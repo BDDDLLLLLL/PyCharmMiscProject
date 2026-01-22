@@ -6,11 +6,14 @@
 </head>
 <body bgcolor="lightblue">
 
-<a href="https://www.aviasales.ru/">
-  <img src="https://png.pngtree.com/png-vector/20241030/ourmid/pngtree-cat-vector-clipart-png-image_14198718.png" alt="Описание кнопки" width="200">
-</a>
-<a href="https://unicode.bootstrap-4.ru/alt-codes/">
-  <img src="https://png.pngtree.com/png-vector/20250317/ourmid/pngtree-adorable-tabby-kitten-portrait-png-image_15756788.png" alt="Описание кнопки" width="200">
-</a>
+<!--<a href="https://unicode.bootstrap-4.ru/alt-codes/">
+  <img src="https://png.pngtree.com/png-vector/20250317/ourmid/pngtree-adorable-tabby-kitten-portrait-png-image_15756788.png" alt="Описание кнопки" width="200" style="position: relative; top:401px; left: 880px;">
+</a> -->
+<form action="{{ url_for('page') }}" method="post">
+    <button type="submit" name="action"  class="text-button" style="background: none; border: none; padding: 0;">
+        <!--value="some_text_action"-->
+      <img src="https://png.pngtree.com/png-vector/20241030/ourmid/pngtree-cat-vector-clipart-png-image_14198718.png" alt="Описание кнопки" width="200">
+    </button>
+</form>
 </body>
 </html>
