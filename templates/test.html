@@ -15,5 +15,50 @@
       <img src="https://png.pngtree.com/png-vector/20241030/ourmid/pngtree-cat-vector-clipart-png-image_14198718.png" alt="Описание кнопки" width="200">
     </button>
 </form>
+<h1>User Camera Feed</h1>
+
+    <div class="video-container">
+        <!-- Video element to display the stream -->
+        <video id="userCamera" autoplay playsinline style="width: 100%; max-width: 640px; background: #000; border-radius: 10px; filter: grayscale(50%);"></video>
+    </div>
+
+    <p id="statusText">Requesting camera access...</p>
+ <img src="https://png.pngtree.com/png-vector/20250317/ourmid/pngtree-adorable-tabby-kitten-portrait-png-image_15756788.png"
+     style="
+        position: absolute;
+        z-index: 999;
+        width: 150px;
+        /* Вычисляем позицию: двигаем картинку назад на высоту видео */
+        margin-left: -400px; /* Двигаем влево внутрь кадра (подбери под экран) */
+        margin-top: 100px;   /* Спускаем на уровень глаз */
+        pointer-events: none;
+     ">
+    <script>
+        async function initCamera() {
+            const video = document.getElementById('userCamera');
+            const status = document.getElementById('statusText');
+
+            try {
+                // Request camera access via browser API
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: false
+                });
+
+                // Set the stream as source for the video tag
+                video.srcObject = stream;
+                status.innerText = "Camera connected successfully.";
+                status.style.color = "green";
+
+            } catch (err) {
+                console.error("Error:", err);
+                status.innerText = "Error: " + err.message;
+                status.style.color = "red";
+            }
+        }
+
+        // Initialize camera on page load
+        window.addEventListener('load', initCamera);
+    </script>
 </body>
 </html>
