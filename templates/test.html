@@ -9,7 +9,7 @@
 <!--<a href="https://unicode.bootstrap-4.ru/alt-codes/">
   <img src="https://png.pngtree.com/png-vector/20250317/ourmid/pngtree-adorable-tabby-kitten-portrait-png-image_15756788.png" alt="Описание кнопки" width="200" style="position: relative; top:401px; left: 880px;">
 </a> -->
-<form action="{{ url_for('page') }}" method="post">
+<form action="{{ url_for('home') }}" method="post">
     <button type="submit" name="action"  class="text-button" style="background: none; border: none; padding: 0;">
         <!--value="some_text_action"-->
       <img src="https://png.pngtree.com/png-vector/20241030/ourmid/pngtree-cat-vector-clipart-png-image_14198718.png" alt="Описание кнопки" width="200">
@@ -17,22 +17,41 @@
 </form>
 <h1>User Camera Feed</h1>
 
-    <div class="video-container">
+    <div class="video-container" style="position: relative; display: inline-block;">
         <!-- Video element to display the stream -->
-        <video id="userCamera" autoplay playsinline style="width: 100%; max-width: 640px; background: #000; border-radius: 10px; filter: grayscale(50%);"></video>
-    </div>
+        <video id="userCamera" autoplay playsinline style="width: 100%; max-width: 640px; background: #000; border-radius: 10px; filter: grayscale(50%); display: block;" ></video>
+
 
     <p id="statusText">Requesting camera access...</p>
- <img src="https://png.pngtree.com/png-vector/20250317/ourmid/pngtree-adorable-tabby-kitten-portrait-png-image_15756788.png"
+ <img src="data:image/png;base64,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"
      style="
+            position: absolute;
+            bottom: 10px;    /* Отступ снизу */
+            right: 10px;     /* Отступ справа */
+            width: 100px;    /* Размер картинки на видео */
+            z-index: 10;     /* Поверх видео */
+            pointer-events: none; /* Чтобы картинка не мешала кликать на видео, если нужно */
+         ">
+    </div>
+<style>
+    .ball {
         position: absolute;
-        z-index: 999;
-        width: 150px;
-        /* Вычисляем позицию: двигаем картинку назад на высоту видео */
-        margin-left: -400px; /* Двигаем влево внутрь кадра (подбери под экран) */
-        margin-top: 100px;   /* Спускаем на уровень глаз */
-        pointer-events: none;
-     ">
+        width: 100px;
+        transition: all 2s; /* Плавность */
+        animation: fly 10s infinite linear;
+    }
+
+    @keyframes fly {
+        0%   { left: 10%; top: 10%; }
+        {% for pos in path %}
+        {{ loop.index * 20 }}% { left: {{ pos.x }}%; top: {{ pos.y }}%; }
+        {% endfor %}
+        100% { left: 10%; top: 10%; }
+    }
+</style>
+
+<!-- Вставьте само изображение в body -->
+<img src="https://pngicon.ru/file/uploads/utka-1-900x890.png" class="ball">
     <script>
         async function initCamera() {
             const video = document.getElementById('userCamera');
