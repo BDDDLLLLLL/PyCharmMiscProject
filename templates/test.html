@@ -9,17 +9,17 @@
 <!--<a href="https://unicode.bootstrap-4.ru/alt-codes/">
   <img src="https://png.pngtree.com/png-vector/20250317/ourmid/pngtree-adorable-tabby-kitten-portrait-png-image_15756788.png" alt="Описание кнопки" width="200" style="position: relative; top:401px; left: 880px;">
 </a> -->
+<!--
 <form action="{{ url_for('home') }}" method="post">
     <button type="submit" name="action"  class="text-button" style="background: none; border: none; padding: 0;">
-        <!--value="some_text_action"-->
-      <img src="https://png.pngtree.com/png-vector/20241030/ourmid/pngtree-cat-vector-clipart-png-image_14198718.png" alt="Описание кнопки" width="200">
+        value="some_text_action"
+      <img src="https://png.pngtree.com/png-vector/20241030/ourmid/pngtree-cat-vector-clipart-png-image_14198718.png" alt="Описание кнопки" width="200"> перед фильтром  max-width: 1000px; background: #000; border-radius: 100px; после фильтра display: block;
     </button>
-</form>
-<h1>User Camera Feed</h1>
+</form>  -->
 
     <div class="video-container" style="position: relative; display: inline-block;">
         <!-- Video element to display the stream -->
-        <video id="userCamera" autoplay playsinline style="width: 100%; max-width: 640px; background: #000; border-radius: 10px; filter: grayscale(50%); display: block;" ></video>
+        <video id="userCamera" autoplay playsinline style="width: 100%; filter: grayscale(50%); display: block;" ></video>
 
 
     <p id="statusText">Requesting camera access...</p>
@@ -34,9 +34,24 @@
          ">
     </div>
 <style>
+
+    .area {
+        position: absolute; /* Вырываем блок из общего потока */
+        top: 7px;
+        left: 7px;
+        width: 637px;
+        height: 477px;
+        margin: 0;
+
+
+
+        overflow: hidden;   /* Обязательно: обрезает всё, что вылетает за границы 500x400 */
+
+    }
     .ball {
         position: absolute;
         width: 100px;
+        height: 90px;
         transition: all 2s; /* Плавность */
         animation: fly 10s infinite linear;
     }
@@ -51,7 +66,14 @@
 </style>
 
 <!-- Вставьте само изображение в body -->
-<img src="https://pngicon.ru/file/uploads/utka-1-900x890.png" class="ball">
+<div class="area">\
+    <form action="{{ url_for('home') }}" method="post">
+        <button type="submit" name="action"  class="text-button" style="background: none; border: none; padding: 0;">
+
+            <img src="https://pngicon.ru/file/uploads/utka-1-900x890.png" class="ball">
+        </button>
+    </form>
+</div>
     <script>
         async function initCamera() {
             const video = document.getElementById('userCamera');
