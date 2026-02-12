@@ -36,7 +36,7 @@ from flask import Flask, render_template, url_for, redirect, request
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])  # Разрешаем оба метода здесь
+@app.route('/', methods=['GET', 'POST'])  # Разре оба метода здесь
 def home():
     random_path = [
         {'x': random.randint(0, 85), 'y': random.randint(0, 85)}
