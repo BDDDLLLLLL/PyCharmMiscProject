@@ -28,7 +28,6 @@ while 1:
     #pygame.draw.circle(screen, (250,100,100),(250,350), 50,100)
     #pygame.draw.circle(screen, (250,100,100),(350,350), 50,100)
     #pygame.draw.polygon(screen, (250,100,100),[[200,370], [300,450],[400,370],[200,350]])
-    a+=1
     if n:
         if x<300:
             x=x+1
