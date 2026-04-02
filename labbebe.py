@@ -1,17 +1,21 @@
-import time
-import timeit
 import random
 import pygame
 screen=pygame.display.set_mode((375, 625))
 
-
+#kol 12x25
 n=25 #строк
 m=15 #столбцов
 x=0
 y=0
-r1= True
+fx=True
+fy=True
 x1=-1
 y1=-1
+xkol=187
+ykol=312
+x2=0
+y2=0
+count=0
 mas = [
     [1,1,0,0,0,0,0,1,0,0,0,0,0,0,0],
     [0,1,0,0,0,1,1,1,0,1,1,1,1,1,1],
@@ -49,12 +53,11 @@ timerrr= 2
 size=25
 stena=pygame.image.load("stena.png")
 doroga=pygame.image.load("doroga.png")
-pizza=pygame.image.load("pizza.png")
-ch=pygame.image.load("chillguy.png")
-my_time = pygame.time.set_timer(timerrr,5000,10)
+svinka=pygame.image.load("becon.png")
+kol=pygame.image.load("shavermasvokzala.png")
+uchebnick=pygame.image.load("shaslik.png")
 
 while 1:
-
 
     for i in range(0,n):
         for j in range(0,m):
@@ -66,10 +69,7 @@ while 1:
 
 
     for event in pygame.event.get():
-                    if event.type == timerrr:
-                        print("timer!")
-                        x1=0
-                        y1=0
+
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_DOWN:
                             if y < 625-25:
@@ -110,13 +110,37 @@ while 1:
                     y1+=1
                     x1+=1
 
+    if fx:
+        xkol=xkol+0.07
+        if xkol>=375-12:
+            fx=False
+    else:
+        xkol=xkol-0.07
+        if xkol<=0:
+            fx=True
 
-    print(x1,y1)
-    m1 = pygame.mask.from_surface(pizza)
-    m2 = pygame.mask.from_surface(ch)
-    of1 = (x1 - x, y1 - y)
-    if m1.overlap(m2, of1):
-        print("you lost")
-    screen.blit(pizza, (x, y))
-    screen.blit(ch,(x1,y1))
+    if fy:
+        ykol=ykol+0.07
+        if ykol>=625-25:
+            fy=False
+    else:
+        ykol=ykol-0.07
+        if ykol<=0:
+            fy=True
+
+    if pygame.mask.from_surface(kol).overlap(pygame.mask.from_surface(svinka), (x - xkol, y - ykol)):
+        count-=1
+        print(count)
+        xkol=random.randint(0,375-12)
+        ykol = random.randint(0, 625-25)
+
+
+   # m1 = pygame.mask.from_surface(pizza)
+  #  m2 = pygame.mask.from_surface()
+   # of1 = (x1 - x, y1 - y)
+   # if m1.overlap(m2, of1):
+   #     print("you lost")
+    screen.blit(svinka, (x, y))
+    screen.blit(kol, (int(xkol), int(ykol)))
+    screen.blit(uchebnick, (x2,y2))
     pygame.display.update()
