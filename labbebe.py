@@ -2,7 +2,6 @@ import random
 import pygame
 screen=pygame.display.set_mode((375, 625))
 pygame.font.init()
-#kol 12x25
 n=25 #строк
 m=15 #столбцов
 x=0
@@ -35,7 +34,7 @@ mas = [
     [0,1,0,0,0,0,0,0,0,0,0,1,0,1,0],
     [0,1,0,1,1,1,1,1,1,1,1,1,0,1,0],
     [0,1,1,1,0,0,0,0,0,0,0,0,0,1,0],
-    [1,1,0,0,0,0,0,1,0,0,0,0,0,1,0],
+    [1,1,0,0,0,0,0,0,0,0,0,0,0,1,0],
     [0,0,0,1,0,1,1,0,0,0,0,0,0,1,0],
     [1,1,1,1,0,1,0,0,1,1,1,1,1,1,0],
     [1,0,0,0,1,1,1,0,1,0,0,0,0,0,0],
@@ -181,12 +180,12 @@ while 1:
 
     if pygame.mask.from_surface(kol).overlap(pygame.mask.from_surface(pizza), (x - xkol, y - ykol)):
         count-=1
-        print(count)
+
         xkol=random.randint(0,375-12)
         ykol = random.randint(0, 625-25)
     if pygame.mask.from_surface(coin).overlap(pygame.mask.from_surface(pizza), (x - x2, y - y2)):
             count += 1
-            print(count)
+
 
             while coincon:
 
@@ -204,24 +203,27 @@ while 1:
 
     screen.blit(pizza, (x, y))
     screen.blit(exit, (300, 600))
-    if pygame.mask.from_surface(exit).overlap(pygame.mask.from_surface(pizza), (x - 300, y - 600)):
-        okcon = True
-        if count<2:
-            if okcon:
-                screen.blit(notwin, (0, 0))
-                screen.blit(ok, (0, 0))
-                for event in pygame.event.get():
-                    xb, yb = pygame.mouse.get_pos()
 
-                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and per:
-                        xb, yb = event.pos
-                        screen.blit(mask, (xb, yb))
+    #экран, если набрано недостаточно очков
+    if pygame.mask.from_surface(exit).overlap(pygame.mask.from_surface(pizza), (x - 300, y - 600)) and count<67 and okcon == False:
+        screen.blit(notwin, (0, 0))
+        screen.blit(ok, (143, 356))
+        for event in pygame.event.get():
+            xb, yb = pygame.mouse.get_pos()
 
-                        if pygame.mask.from_surface(mask).overlap(pygame.mask.from_surface(ok), (xb,yb)):
-                            okcon=False
-                            x = 600
-        else:
-            screen.blit(win, (0, 0))
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and okcon == False:
+                xb, yb = event.pos
+                screen.blit(mask, (xb, yb))
+                okcon = False
+                if pygame.mask.from_surface(mask).overlap(pygame.mask.from_surface(ok), (143-xb,356-yb)) and okcon == False:
+                    okcon = True
+                    y = 575
+                    x = 300
+
+    #экран, если набрано нужное количество очков
+    elif pygame.mask.from_surface(exit).overlap(pygame.mask.from_surface(pizza), (x - 300, y - 600)) and count>=67 and okcon == False:
+        screen.blit(win, (0, 0))
+    okcon = False
 
 
 
